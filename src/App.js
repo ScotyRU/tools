@@ -8,7 +8,11 @@ function App() {
   useEffect(() => {
     set();
     window.addEventListener('resize', set);
-    return () => window.removeEventListener('resize', set);
+    window.addEventListener('orientationchange', set);
+    return () => {
+      window.removeEventListener('resize', set);
+      window.removeEventListener('orientationchange', set);
+    }
   }, [])
   return (
     <div className="App">
